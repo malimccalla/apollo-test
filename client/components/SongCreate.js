@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
+import { Link } from 'react-router';
 
 class SongCreate extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class SongCreate extends Component {
   render() {
     return (
       <div>
+        <Link to="/">Back</Link>
         <h3>Create a new song</h3>
         <form onSubmit={this.onSubmit.bind(this)}>
           <label htmlFor="songTitle">Song Title:</label>
