@@ -3,6 +3,7 @@ const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
 const SongType = require('./song_type');
 const LyricType = require('./lyric_type');
+const SpotType = require('./spot.type');
 const Lyric = mongoose.model('lyric');
 const Song = mongoose.model('song');
 
@@ -27,6 +28,19 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parnetValue, { id }) {
         return Lyric.findById(id);
+      }
+    },
+    spot: {
+      type: SpotType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      async resolve(parentValue, { id }, { airtable }) {
+        try {
+          const record = await airtable('Spots').find(id);
+          console.log('RECORD', record);
+          return record.fields;
+        } catch (e) {
+          console.log('ERROR:', e);
+        }
       }
     }
   })
