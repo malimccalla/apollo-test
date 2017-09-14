@@ -14,7 +14,7 @@ const SpotType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    Genre: { type: new GraphQLList(GraphQLString) },
+    genre: { type: new GraphQLList(GraphQLString) },
     neighbourhood: { type: GraphQLString },
     tip: { type: GraphQLString },
     website: { type: GraphQLString }
