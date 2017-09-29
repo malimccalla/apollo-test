@@ -22,7 +22,7 @@ mongoose.connection
 
 Airtable.configure({
   endpointUrl: 'https://api.airtable.com',
-  apiKey: process.env.AIRTABLE_KEY
+  apiKey: process.env.AIRTABLE_KEY,
 });
 const base = Airtable.base('app7c78BVsPy2ePyw');
 
@@ -33,9 +33,9 @@ app.use(
     schema,
     graphiql: true,
     context: {
-      airtable: base
-    }
-  })
+      airtable: base,
+    },
+  }),
 );
 
 const webpackMiddleware = require('webpack-dev-middleware');
